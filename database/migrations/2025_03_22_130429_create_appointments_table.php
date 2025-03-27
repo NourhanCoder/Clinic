@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email',255)->unique();
             $table->dateTime('appointment_dates')->nullable();
             $table->enum('status',['pending','confirmed','cancelled'])->default('pending');
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->foreignId('doctor_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

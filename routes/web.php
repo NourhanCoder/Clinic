@@ -1,8 +1,12 @@
 <?php
 
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Models\Doctor;
 use App\Models\Major;
+use Illuminate\Support\Facades\DB;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -16,6 +20,7 @@ Route::get('/majors',[PageController::class,'majors'])->name('majors_page');
 Route::get('/login',[PageController::class,'login'])->name('login_page');
 Route::get('/register',[PageController::class,'register'])->name('register_page');
 
+//Model ORM
 Route::get('/create-major', function(){
     //Create
     // Major::create([
@@ -41,5 +46,39 @@ Route::get('/create-major', function(){
 
     //Delete
     // Major::find(4)->delete();
+
+});
+
+//Query Builder
+Route::get('/create-major-query',function(){
+    // DB::table('majors')->insert([
+    //     'name'=> "orthopedic"
+    // ]);
+
+    //Select
+    // $major= DB::table('majors')->get();
+    // $major= DB::table('majors')->where('id',5)->first();
+    // dd($major);
+
+    //Update
+    // DB::table('majors')->where('id',5)->update([
+    //     'name'=>"Internal Medicine"
+    // ]);
+
+    //Delete
+    //DB::table('majors')->where('id',5)->delete();
+
+ 
+
+});
+
+Route::get('/relation',function(){
+    //$doctor = Doctor::find(1);
+   
+    //dd($doctor->major);
+    $appointments = Appointment::where('doctor_id', 1)->get();
+
+    // طباعة البيانات بشكل أوضح
+    dd($appointments->toArray());
 
 });

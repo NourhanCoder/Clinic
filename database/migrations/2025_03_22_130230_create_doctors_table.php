@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('location',255);
             //$table->foreignId('user_id')->constrained();
-            $table->foreignId('major_id')->constrained();
+            $table->foreignId('major_id')->constrained()->onDelete('cascade');;
             $table->timestamps();
         });
     }
