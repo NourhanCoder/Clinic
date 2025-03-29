@@ -78,7 +78,11 @@ Route::get('/relation',function(){
     //dd($doctor->major);
     $appointments = Appointment::where('doctor_id', 1)->get();
 
-    // طباعة البيانات بشكل أوضح
+    
     dd($appointments->toArray());
 
 });
+
+// Route::get('/faker-majors',function(){
+//     Major::factory(5)->create();
+// });
